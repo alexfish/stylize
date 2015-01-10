@@ -30,6 +30,12 @@ func backgroundColor(color: UIColor) -> StringStyle {
     }
 }
 
+func underlineColor(color: UIColor) -> StringStyle {
+    return { string in
+        return apply(NSUnderlineColorAttributeName, color)(string)
+    }
+}
+
 func link(url: NSURL) -> StringStyle {
     return { string in
         return apply(NSLinkAttributeName, url)(string)
