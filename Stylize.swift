@@ -14,7 +14,7 @@ typealias StringStyle       = NSAttributedString -> NSAttributedString
 
 func underline(style: NSUnderlineStyle) -> StringStyle {
     return { string in
-        return apply(NSUnderlineColorAttributeName, style.rawValue)(string)
+        return apply(NSUnderlineStyleAttributeName, style.rawValue)(string)
     }
 }
 
