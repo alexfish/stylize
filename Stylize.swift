@@ -71,7 +71,9 @@ func apply(name: AttributeName, value: AttributeValue) -> StringStyle {
 
 infix operator >>> { associativity left }
 func >>> (style1: StringStyle, style2: StringStyle) -> StringStyle {
-    return { string in style2(style1(string)) }
+    return { string in
+        style2(style1(string))
+    }
 }
 
 func combine(styles: StringStyle...) -> StringStyle {
