@@ -12,49 +12,51 @@ typealias AttributeName     = String
 typealias AttributeValue    = AnyObject
 typealias StringStyle       = NSAttributedString -> NSAttributedString
 
-func underline(style: NSUnderlineStyle, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
+let EmptyRange              = NSMakeRange(NSNotFound, 0)
+
+func underline(style: NSUnderlineStyle, range: NSRange = EmptyRange) -> StringStyle {
     return { string in
         return apply(NSUnderlineStyleAttributeName, style.rawValue, range)(string)
     }
 }
 
-func foregroundColor(color: UIColor, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
+func foregroundColor(color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
     return { string in
         return apply(NSForegroundColorAttributeName, color, range)(string)
     }
 }
 
-func backgroundColor(color: UIColor, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
+func backgroundColor(color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
     return { string in
         return apply(NSBackgroundColorAttributeName, color, range)(string)
     }
 }
 
-func underlineColor(color: UIColor, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
+func underlineColor(color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
     return { string in
         return apply(NSUnderlineColorAttributeName, color, range)(string)
     }
 }
 
-func link(url: NSURL, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
+func link(url: NSURL, range: NSRange = EmptyRange) -> StringStyle {
     return { string in
         return apply(NSLinkAttributeName, url, range)(string)
     }
 }
 
-func paragraph(style: NSParagraphStyle, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
+func paragraph(style: NSParagraphStyle, range: NSRange = EmptyRange) -> StringStyle {
     return { string in
         return apply(NSParagraphStyleAttributeName, style, range)(string)
     }
 }
 
-func kern(points: NSNumber, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
+func kern(points: NSNumber, range: NSRange = EmptyRange) -> StringStyle {
     return { string in
         return apply(NSKernAttributeName, points, range)(string)
     }
 }
 
-func baseline(offset: NSNumber, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
+func baseline(offset: NSNumber, range: NSRange = EmptyRange) -> StringStyle {
     return { string in
         return apply(NSBaselineOffsetAttributeName, offset, range)(string)
     }
