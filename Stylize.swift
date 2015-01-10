@@ -30,6 +30,30 @@ func backgroundColor(color: UIColor) -> StringStyle {
     }
 }
 
+func link(url: NSURL) -> StringStyle {
+    return { string in
+        return apply(NSLinkAttributeName, url)(string)
+    }
+}
+
+func paragraph(style: NSParagraphStyle) -> StringStyle {
+    return { string in
+        return apply(NSParagraphStyleAttributeName, style)(string)
+    }
+}
+
+func kern(points: NSNumber) -> StringStyle {
+    return { string in
+        return apply(NSKernAttributeName, points)(string)
+    }
+}
+
+func baseline(offset: NSNumber) -> StringStyle {
+    return { string in
+        return apply(NSBaselineOffsetAttributeName, offset)(string)
+    }
+}
+
 func apply(name: AttributeName, value: AttributeValue) -> StringStyle {
     return { string in
         let attributedString = NSMutableAttributedString(attributedString: string)
