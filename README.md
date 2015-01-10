@@ -34,6 +34,16 @@ let style         = foregroundColor(UIColor.redColor())
 let styledString  = style(string)
 ```
 
+### Substrings
+
+By default styles will be applied to the entire string, if you need to apply a style to a subsstring an optional `range` paramater is available for each style:
+
+```
+let string        = NSAttributedString(string: "Hello World")
+let style         = foregroundColor(UIColor.redColor(), range: NSMakeRange(0, 5))
+let styledString  = style(string)
+```
+
 ### Chaining Styles
 
 stylize uses operating overloading to expose the `>>>` operator to chain styles together:

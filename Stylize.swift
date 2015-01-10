@@ -12,58 +12,62 @@ typealias AttributeName     = String
 typealias AttributeValue    = AnyObject
 typealias StringStyle       = NSAttributedString -> NSAttributedString
 
-func underline(style: NSUnderlineStyle) -> StringStyle {
+func underline(style: NSUnderlineStyle, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
     return { string in
-        return apply(NSUnderlineStyleAttributeName, style.rawValue)(string)
+        return apply(NSUnderlineStyleAttributeName, style.rawValue, range)(string)
     }
 }
 
-func foregroundColor(color: UIColor) -> StringStyle {
+func foregroundColor(color: UIColor, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
     return { string in
-        return apply(NSForegroundColorAttributeName, color)(string)
+        return apply(NSForegroundColorAttributeName, color, range)(string)
     }
 }
 
-func backgroundColor(color: UIColor) -> StringStyle {
+func backgroundColor(color: UIColor, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
     return { string in
-        return apply(NSBackgroundColorAttributeName, color)(string)
+        return apply(NSBackgroundColorAttributeName, color, range)(string)
     }
 }
 
-func underlineColor(color: UIColor) -> StringStyle {
+func underlineColor(color: UIColor, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
     return { string in
-        return apply(NSUnderlineColorAttributeName, color)(string)
+        return apply(NSUnderlineColorAttributeName, color, range)(string)
     }
 }
 
-func link(url: NSURL) -> StringStyle {
+func link(url: NSURL, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
     return { string in
-        return apply(NSLinkAttributeName, url)(string)
+        return apply(NSLinkAttributeName, url, range)(string)
     }
 }
 
-func paragraph(style: NSParagraphStyle) -> StringStyle {
+func paragraph(style: NSParagraphStyle, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
     return { string in
-        return apply(NSParagraphStyleAttributeName, style)(string)
+        return apply(NSParagraphStyleAttributeName, style, range)(string)
     }
 }
 
-func kern(points: NSNumber) -> StringStyle {
+func kern(points: NSNumber, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
     return { string in
-        return apply(NSKernAttributeName, points)(string)
+        return apply(NSKernAttributeName, points, range)(string)
     }
 }
 
-func baseline(offset: NSNumber) -> StringStyle {
+func baseline(offset: NSNumber, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
     return { string in
-        return apply(NSBaselineOffsetAttributeName, offset)(string)
+        return apply(NSBaselineOffsetAttributeName, offset, range)(string)
     }
 }
 
-func apply(name: AttributeName, value: AttributeValue) -> StringStyle {
+func apply(name: AttributeName, value: AttributeValue, var range: NSRange) -> StringStyle {
     return { string in
+        if range.location == NSNotFound {
+            range = NSMakeRange(0, string.length)
+        }
+
         let attributedString = NSMutableAttributedString(attributedString: string)
-        attributedString.addAttribute(name, value: value, range: NSMakeRange(0, string.length))
+        attributedString.addAttribute(name, value: value, range: range)
 
         return attributedString
     }
