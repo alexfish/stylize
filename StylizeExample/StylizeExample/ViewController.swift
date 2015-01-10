@@ -17,8 +17,7 @@ class ViewController: UIViewController {
 
         let foregroundStyle = foregroundColor(UIColor.redColor())
         let backgroundStyle = backgroundColor(UIColor.greenColor())
-        let linkStyle       = link(NSURL(string: "https://github.com/alexfish/stylize")!)
-        let style           = linkStyle >>> foregroundStyle >>> backgroundStyle
+        let style           = foregroundStyle >>> backgroundStyle
 
         let string = NSAttributedString(string: "Hello World")
         label?.attributedText = style(string)
