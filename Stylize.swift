@@ -73,3 +73,13 @@ infix operator >>> { associativity left }
 func >>> (style1: StringStyle, style2: StringStyle) -> StringStyle {
     return { string in style2(style1(string)) }
 }
+
+func combine(styles: StringStyle...) -> StringStyle {
+    var combined = styles.first!
+
+    for style in styles {
+        combined = combined >>> style
+    }
+
+    return combined
+}

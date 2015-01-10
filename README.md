@@ -36,11 +36,27 @@ let styledString  = style(string)
 
 ### Chaining Styles
 
-stylize uses operating overloading to expose the `>>>` operator to chain styles together
+stylize uses operating overloading to expose the `>>>` operator to chain styles together:
 
 ```
-let string        = NSAttributedString(string: "Hello World")
-let style         = foregroundColor(UIColor.redColor()) >>> backgroundColor(UIColor.orangeColor()) >>> underline(NSUnderlineStyle.StyleSingle)
-let styledString  = style(string)
+let string          = NSAttributedString(string: "Hello World")
+let foregroundStyle = foregroundColor(UIColor.redColor())
+let backgroundStyle = backgroundColor(UIColor.orangeColor())
+let underlineStyle  = underline(NSUnderlineStyle.StyleSingle)
+
+let style           = foregroundStyle >>> backgroundStyle >>> underlineStyle
+let styledString    = style(string)
+```
+
+If you don't like using the `>>>` operator the `combine` function can achieve the same result:
+
+```
+let string          = NSAttributedString(string: "Hello World")
+let foregroundStyle = foregroundColor(UIColor.redColor())
+let backgroundStyle = backgroundColor(UIColor.orangeColor())
+let underlineStyle  = underline(NSUnderlineStyle.StyleSingle)
+
+let style           = combine(foregroundStyle, backgroundStyle, underlineStyle)
+let styledString    = style(string)
 ```
 
