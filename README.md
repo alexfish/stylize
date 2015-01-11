@@ -4,6 +4,14 @@
 
 A funcitonal wrapper of NSAttributedString for easy string styling
 
+## Contents
+
+* [Why does NSAttributedString need a wrapper?](#why-does-nsattributedstring-need-a-wrapper)
+* [Setup](#setup)
+* [Usage](#usage)
+    * [Substrings](#substrings)
+    * [Combining Styles](#combining-styles)
+
 ## Why does NSAttributedString need a wrapper?
 
 Styling strings with NSAttributedString requires a lot of painful and ugly boiler plate code, for example changing the color of a subsstring and underlining it requires:
@@ -29,9 +37,12 @@ let styledString    = style(string)
 
 That's better.
 
-## Integration
+## Setup
 
-To manually install stylize simply drag `Stylize.swift` into your project tree.
+1. Add Stylize to you project as a submodule using `git submodule add https://github.com/alexfish/stylize.git`
+2. Open the Stylize folder & drag Stylize.xcodeproj into your project tree
+3. Add `Stylize.framework` to your target's `Link Binary with Libraries` Build Phase
+4. Import Stylize with `import Stylize` and you're ready to go
 
 ## Usage
 
