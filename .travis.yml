@@ -1,0 +1,3 @@
+language: objective-c
+xcode_workspace: Stylize.xcworkspace
+xcode_scheme: Stylize
