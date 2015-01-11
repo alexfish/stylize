@@ -1,3 +1,4 @@
 language: objective-c
-xcode_workspace: Stylize.xcworkspace
-xcode_scheme: Stylize
+
+script:
+- xctool -workspace Stylize.xcworkspace -scheme Stylize -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO build test
