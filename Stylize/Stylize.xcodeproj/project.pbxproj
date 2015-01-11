@@ -12,6 +12,7 @@
 		0671B6A51A61EC3800C60A9A /* StylizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0671B6A41A61EC3800C60A9A /* StylizeTests.swift */; };
 		0671B6AF1A61EC6B00C60A9A /* Stylize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0671B6AE1A61EC6B00C60A9A /* Stylize.swift */; };
 		0671B6B01A61EC6B00C60A9A /* Stylize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0671B6AE1A61EC6B00C60A9A /* Stylize.swift */; };
+		0671B6B41A62DE2E00C60A9A /* Stylize.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0671B6921A61EC3800C60A9A /* Stylize.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,6 +24,19 @@
 			remoteInfo = Stylize;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0671B6B31A62DE2700C60A9A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0671B6B41A62DE2E00C60A9A /* Stylize.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0671B6921A61EC3800C60A9A /* Stylize.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Stylize.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,6 +159,7 @@
 				0671B6991A61EC3800C60A9A /* Sources */,
 				0671B69A1A61EC3800C60A9A /* Frameworks */,
 				0671B69B1A61EC3800C60A9A /* Resources */,
+				0671B6B31A62DE2700C60A9A /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -404,6 +419,7 @@
 				0671B6AA1A61EC3800C60A9A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0671B6AB1A61EC3800C60A9A /* Build configuration list for PBXNativeTarget "StylizeTests" */ = {
 			isa = XCConfigurationList;
@@ -412,6 +428,7 @@
 				0671B6AD1A61EC3800C60A9A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
