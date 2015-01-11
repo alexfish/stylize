@@ -1,5 +1,7 @@
 # stylize
 
+[![Build Status](https://travis-ci.org/alexfish/stylize.svg)](https://travis-ci.org/alexfish/stylize)
+
 A funcitonal wrapper of NSAttributedString for easy string styling
 
 ## Why does NSAttributedString need a wrapper?
