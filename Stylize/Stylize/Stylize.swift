@@ -39,6 +39,21 @@ public class Stylize {
     }
 
     /**
+    Creates a function that will strikethrough an attributed string
+
+    :param: style The NSUnderlineStyle to strikethrough with
+    :param: range Optional range of the strikethrough, an invalid range will result in the
+    entire string being striked through
+
+    :returns: Function that can be called to strikthrough an attributed string
+    */
+    public class func strikethrough(style: NSUnderlineStyle, range: NSRange = EmptyRange) -> StringStyle {
+        return { string in
+            return Stylize.apply(NSStrikethroughStyleAttributeName, value: style.rawValue, range: range)(string)
+        }
+    }
+
+    /**
     Creates a function that will change the foreground color of an attributed string
 
     :param: color The UIColor to use when styling a string
@@ -80,6 +95,21 @@ public class Stylize {
     public class func underlineColor(color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
             return Stylize.apply(NSUnderlineColorAttributeName, value: color, range: range)(string)
+        }
+    }
+
+    /**
+    Creates a function that will change the strikethrough color of an attributed string
+
+    :param: color The UIColor to use when styling the string
+    :param: range Optional range of the color, an invalid range will result in the
+    entire string strikethrough being colored
+
+    :returns: Function that can be called to change the strikethrough color of an attributed string
+    */
+    public class func strikethroughColor(color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
+        return { string in
+            return Stylize.apply(NSStrikethroughColorAttributeName, value: color, range: range)(string)
         }
     }
 
@@ -143,23 +173,38 @@ public class Stylize {
         }
     }
 
-    // MARK: Combine
+    /**
+    Creates a function that will apply a shadow to an attributed string
+
+    :param: shadow An NSShadow object to apply
+    :param: range Optional range of the shadow, an invalid range will result in the shadow being
+                  applied to the entire string
+
+    :returns: Function that can be called to apply a shadow to an attributed string
+    */
+    public class func shadow(shadow: NSShadow, range: NSRange = EmptyRange) -> StringStyle {
+        return { string in
+            return Stylize.apply(NSShadowAttributeName, value: shadow, range: range)(string)
+        }
+    }
+
+    // MARK: Compose
 
     /**
-    Combines style functions into one function that can be used to style an attributed string
+    Compose multiple style functions into one function that can be used to style an attributed string
 
-    :param: styles An unlimted number of StringStyle functions to combine
+    :param: styles An unlimted number of StringStyle functions to compose
 
     :returns: Function that can be called to style an attributed string
     */
-    public class func combine(styles: StringStyle...) -> StringStyle {
-        var combined = styles.first!
+    public class func compose(styles: StringStyle...) -> StringStyle {
+        var composed = styles.first!
         
         for style in styles {
-            combined = combined >>> style
+            composed = composed >>> style
         }
         
-        return combined
+        return composed
     }
 }
 
@@ -185,15 +230,15 @@ extension Stylize {
 // MARK: Overloads
 
 /**
-*  Operator overload to combine functions with >>>
+*  Operator overload to compose functions with >>>
 */
 infix operator >>> { associativity left }
 
 /**
-Combines styles into one style that can be used to style an attributed string
+Compose a style from multiple styles that can be used to style an attributed string
 
-:param: style1 The first style to combine into the second
-:param: style2 The second style to combine into the first
+:param: style1 The first style to compose with
+:param: style2 The second style to compose with
 
 :returns: Function that can be called to style an attributed string
 */

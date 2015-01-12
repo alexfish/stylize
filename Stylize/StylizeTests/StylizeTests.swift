@@ -99,19 +99,49 @@ class StylizeTests: XCTestCase {
         checkAttributeInRange(NSBaselineOffsetAttributeName, style: style)
     }
 
-    func testStylesAreCombined() {
+    func testStrikethroughIsAdded() {
+        let style = Stylize.strikethrough(NSUnderlineStyle.PatternDash)
+        checkAttribute(NSStrikethroughStyleAttributeName, style: style)
+    }
+
+    func testStrikethroughIsAddedToARange() {
+        let style = Stylize.strikethrough(NSUnderlineStyle.PatternDash, range: NSMakeRange(0, 1))
+        checkAttributeInRange(NSStrikethroughStyleAttributeName, style: style)
+    }
+
+    func testStrikethroughColorIsAdded() {
+        let style = Stylize.strikethroughColor(UIColor.redColor())
+        checkAttribute(NSStrikethroughColorAttributeName, style: style)
+    }
+
+    func testStrikethroughColorIsAddedtoARange() {
+        let style = Stylize.strikethroughColor(UIColor.redColor(), range: NSMakeRange(0, 1))
+        checkAttributeInRange(NSStrikethroughColorAttributeName, style: style)
+    }
+
+    func testShadowIsAdded() {
+        let style = Stylize.shadow(NSShadow())
+        checkAttribute(NSShadowAttributeName, style: style)
+    }
+
+    func testShadowIsAddedToRange() {
+        let style = Stylize.shadow(NSShadow(), range: NSMakeRange(0, 1))
+        checkAttributeInRange(NSShadowAttributeName, style: style)
+    }
+
+    func testStylesAreComposed() {
         let baseline = Stylize.baseline(1)
         let kern = Stylize.kern(1)
-        let style = Stylize.combine(baseline, kern)
+        let style = Stylize.compose(baseline, kern)
 
         checkAttribute(NSBaselineOffsetAttributeName, style: style)
         checkAttribute(NSKernAttributeName, style: style)
     }
 
-    func testStylesAreCombinedInRange() {
+    func testStylesAreComposedInRange() {
         let baseline = Stylize.baseline(1, range: NSMakeRange(0, 1))
         let kern = Stylize.kern(1, range: NSMakeRange(0, 1))
-        let style = Stylize.combine(baseline, kern)
+        let style = Stylize.compose(baseline, kern)
 
         checkAttributeInRange(NSBaselineOffsetAttributeName, style: style)
         checkAttributeInRange(NSKernAttributeName, style: style)
