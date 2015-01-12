@@ -7,9 +7,11 @@ A funcitonal wrapper of NSAttributedString for easy string styling
 ## Contents
 
 * [Why does NSAttributedString need a wrapper?](#why-does-nsattributedstring-need-a-wrapper)
-* [Setup](#setup)
-    * [Framework](#framework-ios-8)
-    * [Manual](#manual-ios-7)
+* [Integration](#integration)
+    * [Carthage](#carthage)
+    * [Manual](#manual)
+        * [iOS 8+](#ios-8)
+        * [iOS 7+](#ios-7)
 * [Usage](#usage)
     * [Substrings](#substrings)
     * [Composing Styles](#composing-styles)
@@ -40,15 +42,21 @@ let styledString    = style(string)
 
 That's better.
 
-## Setup
+## Integration
 
-### Framework (iOS 8+)
+### Carthage
+
+Add `github "alexfish/stylize"` to your `Cartfile`
+
+### Manual
+
+#### iOS 8+
 1. Add Stylize to you project as a submodule using `git submodule add https://github.com/alexfish/stylize.git`
 2. Open the `Stylize` folder & drag `Stylize.xcodeproj` into your project tree
 3. Add `Stylize.framework` to your target's `Link Binary with Libraries` Build Phase
 4. Import Stylize with `import Stylize` and you're ready to go
 
-### Manual (iOS 7+)
+#### iOS 7+
 To manually install Stylize, download this repository and drag `Stylize.swift` into your project tree.
 
 ## Usage
