@@ -34,7 +34,7 @@ public class Stylize {
     */
     public class func underline(style: NSUnderlineStyle, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
-            return Stylize.apply(NSUnderlineStyleAttributeName, value: style.rawValue, range: range)(string)
+            return self.apply(NSUnderlineStyleAttributeName, value: style.rawValue, range: range)(string)
         }
     }
 
@@ -49,7 +49,7 @@ public class Stylize {
     */
     public class func strikethrough(style: NSUnderlineStyle, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
-            return Stylize.apply(NSStrikethroughStyleAttributeName, value: style.rawValue, range: range)(string)
+            return self.apply(NSStrikethroughStyleAttributeName, value: style.rawValue, range: range)(string)
         }
     }
 
@@ -62,9 +62,9 @@ public class Stylize {
 
     :returns: Function that can be called to change the foreground color of an attributed string
     */
-    public class func foregroundColor(color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
+    public class func foreground(color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
-            return Stylize.apply(NSForegroundColorAttributeName, value: color, range: range)(string)
+            return self.apply(NSForegroundColorAttributeName, value: color, range: range)(string)
         }
     }
 
@@ -77,9 +77,9 @@ public class Stylize {
 
     :returns: Function that can be called to change the background color of an attributed string
     */
-    public class func backgroundColor(color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
+    public class func background(color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
-            return Stylize.apply(NSBackgroundColorAttributeName, value: color, range: range)(string)
+            return self.apply(NSBackgroundColorAttributeName, value: color, range: range)(string)
         }
     }
 
@@ -92,9 +92,9 @@ public class Stylize {
 
     :returns: Function that can be called to change the underline color of an attributed string
     */
-    public class func underlineColor(color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
+    public class func underline(color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
-            return Stylize.apply(NSUnderlineColorAttributeName, value: color, range: range)(string)
+            return self.apply(NSUnderlineColorAttributeName, value: color, range: range)(string)
         }
     }
 
@@ -107,9 +107,9 @@ public class Stylize {
 
     :returns: Function that can be called to change the strikethrough color of an attributed string
     */
-    public class func strikethroughColor(color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
+    public class func strikethrough(color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
-            return Stylize.apply(NSStrikethroughColorAttributeName, value: color, range: range)(string)
+            return self.apply(NSStrikethroughColorAttributeName, value: color, range: range)(string)
         }
     }
 
@@ -124,7 +124,7 @@ public class Stylize {
     */
     public class func link(url: NSURL, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
-            return Stylize.apply(NSLinkAttributeName, value: url, range: range)(string)
+            return self.apply(NSLinkAttributeName, value: url, range: range)(string)
         }
     }
 
@@ -139,7 +139,7 @@ public class Stylize {
     */
     public class func paragraph(style: NSParagraphStyle, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
-            return Stylize.apply(NSParagraphStyleAttributeName, value: style, range: range)(string)
+            return self.apply(NSParagraphStyleAttributeName, value: style, range: range)(string)
         }
     }
 
@@ -154,7 +154,7 @@ public class Stylize {
     */
     public class func kern(points: NSNumber, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
-            return Stylize.apply(NSKernAttributeName, value: points, range: range)(string)
+            return self.apply(NSKernAttributeName, value: points, range: range)(string)
         }
     }
 
@@ -169,7 +169,7 @@ public class Stylize {
     */
     public class func baseline(offset: NSNumber, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
-            return Stylize.apply(NSBaselineOffsetAttributeName, value: offset, range: range)(string)
+            return self.apply(NSBaselineOffsetAttributeName, value: offset, range: range)(string)
         }
     }
 
@@ -177,14 +177,73 @@ public class Stylize {
     Creates a function that will apply a shadow to an attributed string
 
     :param: shadow An NSShadow object to apply
-    :param: range Optional range of the shadow, an invalid range will result in the shadow being
-                  applied to the entire string
+    :param: range Optional range of the shadow, an invalid range will result
+                  in the shadow being applied to the entire string
 
     :returns: Function that can be called to apply a shadow to an attributed string
     */
     public class func shadow(shadow: NSShadow, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
-            return Stylize.apply(NSShadowAttributeName, value: shadow, range: range)(string)
+            return self.apply(NSShadowAttributeName, value: shadow, range: range)(string)
+        }
+    }
+
+    /**
+    Creates a function that will apply a stroke color to an attribute string
+
+    :param: color The color to apply
+    :param: range Optional range of the color, an invalid range will result
+                  in the color being applied to the entire string
+
+    :returns: Function that can be called to apply a stroke color to an attributed string
+    */
+    public class func stroke(color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
+        return { string in
+            return self.apply(NSStrokeColorAttributeName, value: color, range: range)(string)
+        }
+    }
+
+    /**
+    Creates a function that will apply a stroke width to an attributed string
+
+    :param: width The stroke width to apply
+    :param: range Optional range of the stroke width, an invalid range will result
+                  in the stroke width being applied to the entire string
+
+    :returns: Function that can be called to apply a stroke width to an attributed string
+    */
+    public class func stroke(width: NSNumber, range: NSRange = EmptyRange) -> StringStyle {
+        return { string in
+            return self.apply(NSStrokeWidthAttributeName, value: width, range: range)(string)
+        }
+    }
+
+    /**
+    Creates a function that will apply a letterpress effect to an attributed string
+
+    :param: range Optional range of the letterpress effect, an invalid range will result
+                  in a letterpress effect being applied to the entire string
+
+    :returns: Function that can be called to apply letterpress effect to an attributed string
+    */
+    public class func letterpress(range: NSRange = EmptyRange) -> StringStyle {
+        return { string in
+            return self.apply(NSTextEffectAttributeName, value: NSTextEffectLetterpressStyle, range: range)(string)
+        }
+    }
+
+    /**
+    Creates a function that will apply a font to an attributed string
+
+    :param: font  The font to apply
+    :param: range Optional range of the font, an invalid range will result
+                  in the font being applied to the entire string
+
+    :returns: Function that can be called to apply a font to an attributed string
+    */
+    public class func font(font: UIFont, range: NSRange = EmptyRange) -> StringStyle {
+        return { string in
+            return self.apply(NSFontAttributeName, value: font, range: range)(string)
         }
     }
 

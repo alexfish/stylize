@@ -23,7 +23,7 @@ Styling strings with NSAttributedString requires a lot of painful and ugly boile
 
 ```swift
 let string = NSMutableAttributedString(string: "Hello")
-string.addAttribute(NSForegroundColorAttributeName, value: UIColor.redColor(), range: NSMakeRange(0, 5))
+string.addAttribute(NSforegroundAttributeName, value: UIColor.redColor(), range: NSMakeRange(0, 5))
 string.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: NSMakeRange(0, string.length))
 ```
 
@@ -33,7 +33,7 @@ This quickly builds into a giant chunk of code that is a pain to read and mainta
 
 ```swift
 let string          = NSAttributedString(string: "Hello World")
-let foregroundStyle = Stylize.foregroundColor(UIColor.redColor(), range: NSMakeRange(0, 5))
+let foregroundStyle = Stylize.foreground(UIColor.redColor(), range: NSMakeRange(0, 5))
 let underlineStyle  = Stylize.underline(NSUnderlineStyle.StyleSingle)
 let style           = Stylize.compose(foregroundStyle, underlineStyle)
 
@@ -63,7 +63,7 @@ To manually install Stylize, download this repository and drag `Stylize.swift` i
 
 ```swift
 let string        = NSAttributedString(string: "Hello World")
-let style         = Stylize.foregroundColor(UIColor.redColor())
+let style         = Stylize.foreground(UIColor.redColor())
 let styledString  = style(string)
 ```
 
@@ -73,7 +73,7 @@ By default styles will be applied to the entire string, if you need to apply a s
 
 ```swift
 let string        = NSAttributedString(string: "Hello World")
-let style         = Stylize.foregroundColor(UIColor.redColor(), range: NSMakeRange(0, 5))
+let style         = Stylize.foreground(UIColor.redColor(), range: NSMakeRange(0, 5))
 let styledString  = style(string)
 ```
 
@@ -83,8 +83,8 @@ stylize has a `compose` function that can compose a style from multiple styles
 
 ```swift
 let string          = NSAttributedString(string: "Hello World")
-let foregroundStyle = Stylize.foregroundColor(UIColor.redColor())
-let backgroundStyle = Stylize.backgroundColor(UIColor.orangeColor())
+let foregroundStyle = Stylize.foreground(UIColor.redColor())
+let backgroundStyle = Stylize.background(UIColor.orangeColor())
 let underlineStyle  = Stylize.underline(NSUnderlineStyle.StyleSingle)
 
 let style           = Stylize.compose(foregroundStyle, backgroundStyle, underlineStyle)
@@ -96,13 +96,17 @@ let styledString    = style(string)
 | Attribute  | Function |
 | ------------- | ------------- |
 | NSUnderlineStyleAttributeName  | `underline(style: NSUnderlineStyle)`  |
+| NSUnderlineColorAttributeName | `underline(color: UIColor)` |
+| NSForegroundColorAttributeName | `foreground(color: UIColor)` |
+| NSBackgroundColorAttributeName | `background(color: UIColor` |
 | NSStrikethroughStyleAttributeName  | `strikethrough(style: NSUnderlineStyle)`  |
-| NSForegroundColorAttributeName | `foregroundColor(color: UIColor)` |
-| NSBackgroundColorAttributeName | `backgroundColor(color: UIColor` |
-| NSUnderlineColorAttributeName | `underlineColor(color: UIColor)` |
-| NSStrikethroughColorAttributeName | `strikethroughColor(color: UIColor)` |
+| NSStrikethroughColorAttributeName | `strikethrough(color: UIColor)` |
 | NSLinkAttributeName | `link(url: NSURL)` |
 | NSParagraphStyleAttributeName | `paragraph(style: NSParagraphStyle)` |
 | NSKernAttributeName | `kern(points: NSNumber)` |
 | NSBaselineOffsetAttributeName | `baseline(offset: NSNumber)` |
 | NSShadowAttributeName | `shadow(shadow: NSShadow)` |
+| NSStrokeWidthAttributeName| `stroke(width: NSNumber)` |
+| NSStrokeColorAttributeName | `stroke(color: UIColor)` |
+| NSTextEffectAttributeName | `letterpress()` |
+| NSFontAttributeName | `font(font: UIFont)` |

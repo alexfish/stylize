@@ -2,7 +2,7 @@
 
 import Stylize
 
-let foregroundStyle = Stylize.foregroundColor(UIColor.redColor())
+let foregroundStyle = Stylize.foreground(UIColor.redColor())
 let kernStyle       = Stylize.kern(5)
 let style           = Stylize.compose(foregroundStyle, kernStyle)
 
