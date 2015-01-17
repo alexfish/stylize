@@ -19,7 +19,7 @@ A funcitonal wrapper of NSAttributedString for easy string styling
 
 ## Why does NSAttributedString need a wrapper?
 
-Styling strings with NSAttributedString requires a lot of painful and ugly boiler plate code, for example changing the color of a subsstring and underlining it requires:
+Styling strings with NSAttributedString requires a lot of painful and ugly boiler plate code, for example changing the color of a substring and underlining it requires:
 
 ```swift
 let string = NSMutableAttributedString(string: "Hello")
@@ -114,4 +114,4 @@ let styledString    = style(string)
 | NSObliquenessAttributeName | `obliqueness(skew: NSNumber)` |
 | NSAttachmentAttributeName | `attachment(attachement: NSTextAttachment)` |
 | NSExpansionAttributeName | `expand(log: NSNumber)` |
-| NSWritingDirectionAttributeName | `direction(direction: WritingDirection` |
+| NSWritingDirectionAttributeName | `direction(direction: WritingDirection)` |
