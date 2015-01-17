@@ -110,3 +110,8 @@ let styledString    = style(string)
 | NSStrokeColorAttributeName | `stroke(color: UIColor)` |
 | NSTextEffectAttributeName | `letterpress()` |
 | NSFontAttributeName | `font(font: UIFont)` |
+| NSLigatureAttributeName | `ligatures(enabled: Bool)` |
+| NSObliquenessAttributeName | `obliqueness(skew: NSNumber)` |
+| NSAttachmentAttributeName | `attachment(attachement: NSTextAttachment)` |
+| NSExpansionAttributeName | `expand(log: NSNumber)` |
+| NSWritingDirectionAttributeName | `direction(direction: WritingDirection` |

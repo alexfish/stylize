@@ -13,6 +13,21 @@ public typealias AttributeName     = String
 public typealias AttributeValue    = AnyObject
 public typealias StringStyle       = NSAttributedString -> NSAttributedString
 
+/**
+Writing direction for NSWritingDirectionAttributeName
+
+- LeftToRightEmbedding: NSWritingDirectionLeftToRight | NSTextWritingDirectionEmbedding
+- RightToLeftEmbedding: NSWritingDirectionRightToLeft | NSTextWritingDirectionEmbedding
+- LeftToRightOverride:  NSWritingDirectionLeftToRight | NSTextWritingDirectionOverride
+- RightToLeftOverride:  NSWritingDirectionRightToLeft | NSTextWritingDirectionOverride
+*/
+public enum WritingDirection: NSNumber {
+    case LeftToRightEmbedding   = 0
+    case RightToLeftEmbedding   = 1
+    case LeftToRightOverride    = 2
+    case RightToLeftOverride    = 3
+}
+
 /// An empty range with no location
 let EmptyRange = NSMakeRange(NSNotFound, 0)
 
@@ -244,6 +259,81 @@ public class Stylize {
     public class func font(font: UIFont, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
             return self.apply(NSFontAttributeName, value: font, range: range)(string)
+        }
+    }
+
+    /**
+    Creates a function that will enable or disable ligatures in an attributed string
+
+    :param: enabled true for ligatures false for none, if the font supports it
+    :param: range   Optional range of the ligatures, an invalid range will result
+                    in the ligatures being applied to the entire string
+
+    :returns: Function that can be called to enable or disable ligatures in an attributed string
+    */
+    public class func ligatures(enabled: Bool, range: NSRange = EmptyRange) -> StringStyle {
+        return { string in
+            return self.apply(NSLigatureAttributeName, value: NSNumber(bool: enabled), range: range)(string)
+        }
+    }
+
+    /**
+    Creates a function that will alter the obliqueness of an attributed string
+
+    :param: skew  The amount of skew to apply to glyphs
+    :param: range   Optional range of the obliqueness, an invalid range will result
+                    in the obliqueness being applied to the entire string
+
+    :returns: Function that can be called to alter the obliqueness of an attributed string
+    */
+    public class func obliqueness(skew: NSNumber, range: NSRange = EmptyRange) -> StringStyle {
+        return { string in
+            return self.apply(NSObliquenessAttributeName, value: skew, range: range)(string)
+        }
+    }
+
+    /**
+    Creates a function that will attach a text attachement to an attributed string
+
+    :param: attachement The attachement to attach
+    :param: range   Optional range of the attachement, an invalid range will result
+                    in the attachement being applied to the entire string
+
+    :returns: Function that can be called to attach an attachement an attributed string
+    */
+    public class func attachment(attachement: NSTextAttachment, range: NSRange = EmptyRange) -> StringStyle {
+        return { string in
+            return self.apply(NSAttachmentAttributeName, value: attachement, range: range)(string)
+        }
+    }
+
+    /**
+    Creates a function that will expand an attributed string
+
+    :param: log   The log of the expansion factor
+    :param: range   Optional range of the expansion, an invalid range will result
+                    in the expansion being applied to the entire string
+
+    :returns: Function that can be called to expand an attributed string
+    */
+    public class func expand(log: NSNumber, range: NSRange = EmptyRange) -> StringStyle {
+        return { string in
+            return self.apply(NSExpansionAttributeName, value: log, range: range)(string)
+        }
+    }
+
+    /**
+    Creates a function that will alter the writing direction of an attributed string
+
+    :param: direction The writing direction to apply
+    :param: range     Optional range of the writing direction, an invalid range will result
+                      in the writing direction being applied to the entire string
+
+    :returns: Function that can be called to alter the writing direction of an attributed string
+    */
+    public class func direction(direction: WritingDirection, range: NSRange = EmptyRange) -> StringStyle {
+        return { string in
+            return self.apply(NSWritingDirectionAttributeName, value: direction.rawValue, range: range)(string)
         }
     }
 

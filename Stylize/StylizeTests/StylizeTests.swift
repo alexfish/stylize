@@ -170,6 +170,56 @@ class StylizeTests: XCTestCase {
         checkAttributeInRange(NSFontAttributeName, style: style)
     }
 
+    func testLigaturesAreAdded() {
+        let style = Stylize.ligatures(true)
+        checkAttribute(NSLigatureAttributeName, style: style)
+    }
+
+    func testLigaturesAreAddedToRange() {
+        let style = Stylize.ligatures(true, range: range)
+        checkAttributeInRange(NSLigatureAttributeName, style: style)
+    }
+
+    func testObliquenessIsAdded() {
+        let style = Stylize.obliqueness(1)
+        checkAttribute(NSObliquenessAttributeName, style: style)
+    }
+
+    func testObliquenessIsAddedToRange() {
+        let style = Stylize.obliqueness(1, range: range)
+        checkAttributeInRange(NSObliquenessAttributeName, style: style)
+    }
+
+    func testAttachementIsAdded() {
+        let style = Stylize.attachment(NSTextAttachment())
+        checkAttribute(NSAttachmentAttributeName, style: style)
+    }
+
+    func testAttachementIsAddedToRange() {
+        let style = Stylize.attachment(NSTextAttachment(), range: range)
+        checkAttributeInRange(NSAttachmentAttributeName, style: style)
+    }
+
+    func testExpandIsAdded() {
+        let style = Stylize.expand(1)
+        checkAttribute(NSExpansionAttributeName, style: style)
+    }
+
+    func testExpandIsAddedToRange() {
+        let style = Stylize.expand(1, range: range)
+        checkAttributeInRange(NSExpansionAttributeName, style: style)
+    }
+
+    func testDirectionIsAdded() {
+        let style = Stylize.direction(WritingDirection.RightToLeftEmbedding)
+        checkAttribute(NSWritingDirectionAttributeName, style: style)
+    }
+
+    func testDirectionIsAddedToRange() {
+        let style = Stylize.direction(WritingDirection.RightToLeftEmbedding, range: range)
+        checkAttributeInRange(NSWritingDirectionAttributeName, style: style)
+    }
+
     func testStylesAreComposed() {
         let baseline = Stylize.baseline(1)
         let kern = Stylize.kern(1)
