@@ -8,7 +8,7 @@
 
 import UIKit
 import XCTest
-import Stylize
+@testable import Stylize
 
 class StylizeTests: XCTestCase {
 
@@ -156,7 +156,7 @@ class StylizeTests: XCTestCase {
     }
 
     func testLetterpressIsAddedToRange() {
-        let style = Stylize.letterpress(range: range)
+        let style = Stylize.letterpress(range)
         checkAttributeInRange(NSTextEffectAttributeName, style: style)
     }
 
@@ -244,7 +244,7 @@ extension StylizeTests {
     func checkAttribute(name: AttributeName, style: StringStyle) {
         let testString  = style(string!)
 
-        var found = attributeFound(name, string: testString)
+        let found = attributeFound(name, string: testString)
 
         XCTAssertTrue(found, "\(name) attribute was not added")
     }
@@ -252,8 +252,8 @@ extension StylizeTests {
     func checkAttributeInRange(name: AttributeName, style: StringStyle) {
         let testString  = style(string!)
 
-        var found    = attributeFound(name, string: testString, range: range)
-        var notFound = attributeFound(name, string: testString, range: NSMakeRange(1, 5))
+        let found    = attributeFound(name, string: testString, range: range)
+        let notFound = attributeFound(name, string: testString, range: NSMakeRange(1, 5))
 
         XCTAssertTrue(found, "\(name) attribute was not added at the correct range")
         XCTAssertFalse(notFound, "\(name) attribute was added at the wrong range")
