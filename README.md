@@ -11,7 +11,6 @@ A funcitonal wrapper of NSAttributedString for easy string styling
     * [Carthage](#carthage)
     * [Manual](#manual)
         * [iOS 8+](#ios-8)
-        * [iOS 7+](#ios-7)
 * [Usage](#usage)
     * [Substrings](#substrings)
     * [Composing Styles](#composing-styles)
@@ -55,9 +54,6 @@ Add `github "alexfish/stylize"` to your `Cartfile`
 2. Open the `Stylize` folder & drag `Stylize.xcodeproj` into your project tree
 3. Add `Stylize.framework` to your target's `Link Binary with Libraries` Build Phase
 4. Import Stylize with `import Stylize` and you're ready to go
-
-#### iOS 7+
-To manually install Stylize, download this repository and drag `Stylize.swift` into your project tree.
 
 ## Usage
 

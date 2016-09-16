@@ -11,7 +11,7 @@ import UIKit
 /// Helpers
 public typealias AttributeName     = String
 public typealias AttributeValue    = AnyObject
-public typealias StringStyle       = NSAttributedString -> NSAttributedString
+public typealias StringStyle       = (NSAttributedString) -> NSAttributedString
 
 /**
 Writing direction for NSWritingDirectionAttributeName
@@ -22,10 +22,10 @@ Writing direction for NSWritingDirectionAttributeName
 - RightToLeftOverride:  NSWritingDirectionRightToLeft | NSTextWritingDirectionOverride
 */
 public enum WritingDirection: NSNumber {
-    case LeftToRightEmbedding   = 0
-    case RightToLeftEmbedding   = 1
-    case LeftToRightOverride    = 2
-    case RightToLeftOverride    = 3
+    case leftToRightEmbedding   = 0
+    case rightToLeftEmbedding   = 1
+    case leftToRightOverride    = 2
+    case rightToLeftOverride    = 3
 }
 
 /// An empty range with no location
@@ -34,7 +34,7 @@ let EmptyRange = NSMakeRange(NSNotFound, 0)
 /**
 *  Easy attributed strings
 */
-public class Stylize {
+open class Stylize {
 
     // MARK: Styles
 
@@ -47,9 +47,9 @@ public class Stylize {
 
     :returns: Function that can be called to underline an attributed string
     */
-    public class func underline(style: NSUnderlineStyle, range: NSRange = EmptyRange) -> StringStyle {
+    open class func underline(_ style: NSUnderlineStyle, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
-            return self.apply(NSUnderlineStyleAttributeName, value: style.rawValue, range: range)(string)
+            return self.apply(NSUnderlineStyleAttributeName, value: style.rawValue as AttributeValue, range: range)(string)
         }
     }
 
@@ -62,9 +62,9 @@ public class Stylize {
 
     :returns: Function that can be called to strikthrough an attributed string
     */
-    public class func strikethrough(style: NSUnderlineStyle, range: NSRange = EmptyRange) -> StringStyle {
+    open class func strikethrough(_ style: NSUnderlineStyle, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
-            return self.apply(NSStrikethroughStyleAttributeName, value: style.rawValue, range: range)(string)
+            return self.apply(NSStrikethroughStyleAttributeName, value: style.rawValue as AttributeValue, range: range)(string)
         }
     }
 
@@ -77,7 +77,7 @@ public class Stylize {
 
     :returns: Function that can be called to change the foreground color of an attributed string
     */
-    public class func foreground(color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
+    open class func foreground(_ color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
             return self.apply(NSForegroundColorAttributeName, value: color, range: range)(string)
         }
@@ -92,7 +92,7 @@ public class Stylize {
 
     :returns: Function that can be called to change the background color of an attributed string
     */
-    public class func background(color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
+    open class func background(_ color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
             return self.apply(NSBackgroundColorAttributeName, value: color, range: range)(string)
         }
@@ -107,7 +107,7 @@ public class Stylize {
 
     :returns: Function that can be called to change the underline color of an attributed string
     */
-    public class func underline(color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
+    open class func underline(_ color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
             return self.apply(NSUnderlineColorAttributeName, value: color, range: range)(string)
         }
@@ -122,7 +122,7 @@ public class Stylize {
 
     :returns: Function that can be called to change the strikethrough color of an attributed string
     */
-    public class func strikethrough(color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
+    open class func strikethrough(_ color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
             return self.apply(NSStrikethroughColorAttributeName, value: color, range: range)(string)
         }
@@ -137,9 +137,9 @@ public class Stylize {
 
     :returns: Function that can be called to create a link with an attributed string
     */
-    public class func link(url: NSURL, range: NSRange = EmptyRange) -> StringStyle {
+    open class func link(_ url: URL, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
-            return self.apply(NSLinkAttributeName, value: url, range: range)(string)
+            return self.apply(NSLinkAttributeName, value: url as AttributeValue, range: range)(string)
         }
     }
 
@@ -152,7 +152,7 @@ public class Stylize {
 
     :returns: Function that can be called to style an attributed string with a paragraph style
     */
-    public class func paragraph(style: NSParagraphStyle, range: NSRange = EmptyRange) -> StringStyle {
+    open class func paragraph(_ style: NSParagraphStyle, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
             return self.apply(NSParagraphStyleAttributeName, value: style, range: range)(string)
         }
@@ -167,7 +167,7 @@ public class Stylize {
 
     :returns: Function that can be called to alter the kern of an attributed string
     */
-    public class func kern(points: NSNumber, range: NSRange = EmptyRange) -> StringStyle {
+    open class func kern(_ points: NSNumber, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
             return self.apply(NSKernAttributeName, value: points, range: range)(string)
         }
@@ -182,7 +182,7 @@ public class Stylize {
 
     :returns: Function that can be called to alter the baseline of an attributed string
     */
-    public class func baseline(offset: NSNumber, range: NSRange = EmptyRange) -> StringStyle {
+    open class func baseline(_ offset: NSNumber, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
             return self.apply(NSBaselineOffsetAttributeName, value: offset, range: range)(string)
         }
@@ -197,7 +197,7 @@ public class Stylize {
 
     :returns: Function that can be called to apply a shadow to an attributed string
     */
-    public class func shadow(shadow: NSShadow, range: NSRange = EmptyRange) -> StringStyle {
+    open class func shadow(_ shadow: NSShadow, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
             return self.apply(NSShadowAttributeName, value: shadow, range: range)(string)
         }
@@ -212,7 +212,7 @@ public class Stylize {
 
     :returns: Function that can be called to apply a stroke color to an attributed string
     */
-    public class func stroke(color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
+    open class func stroke(_ color: UIColor, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
             return self.apply(NSStrokeColorAttributeName, value: color, range: range)(string)
         }
@@ -227,7 +227,7 @@ public class Stylize {
 
     :returns: Function that can be called to apply a stroke width to an attributed string
     */
-    public class func stroke(width: NSNumber, range: NSRange = EmptyRange) -> StringStyle {
+    open class func stroke(_ width: NSNumber, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
             return self.apply(NSStrokeWidthAttributeName, value: width, range: range)(string)
         }
@@ -241,9 +241,9 @@ public class Stylize {
 
     :returns: Function that can be called to apply letterpress effect to an attributed string
     */
-    public class func letterpress(range: NSRange = EmptyRange) -> StringStyle {
+    open class func letterpress(_ range: NSRange = EmptyRange) -> StringStyle {
         return { string in
-            return self.apply(NSTextEffectAttributeName, value: NSTextEffectLetterpressStyle, range: range)(string)
+            return self.apply(NSTextEffectAttributeName, value: NSTextEffectLetterpressStyle as AttributeValue, range: range)(string)
         }
     }
 
@@ -256,7 +256,7 @@ public class Stylize {
 
     :returns: Function that can be called to apply a font to an attributed string
     */
-    public class func font(font: UIFont, range: NSRange = EmptyRange) -> StringStyle {
+    open class func font(_ font: UIFont, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
             return self.apply(NSFontAttributeName, value: font, range: range)(string)
         }
@@ -271,9 +271,9 @@ public class Stylize {
 
     :returns: Function that can be called to enable or disable ligatures in an attributed string
     */
-    public class func ligatures(enabled: Bool, range: NSRange = EmptyRange) -> StringStyle {
+    open class func ligatures(_ enabled: Bool, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
-            return self.apply(NSLigatureAttributeName, value: NSNumber(bool: enabled), range: range)(string)
+            return self.apply(NSLigatureAttributeName, value: NSNumber(value: enabled as Bool), range: range)(string)
         }
     }
 
@@ -286,7 +286,7 @@ public class Stylize {
 
     :returns: Function that can be called to alter the obliqueness of an attributed string
     */
-    public class func obliqueness(skew: NSNumber, range: NSRange = EmptyRange) -> StringStyle {
+    open class func obliqueness(_ skew: NSNumber, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
             return self.apply(NSObliquenessAttributeName, value: skew, range: range)(string)
         }
@@ -301,7 +301,7 @@ public class Stylize {
 
     :returns: Function that can be called to attach an attachement an attributed string
     */
-    public class func attachment(attachement: NSTextAttachment, range: NSRange = EmptyRange) -> StringStyle {
+    open class func attachment(_ attachement: NSTextAttachment, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
             return self.apply(NSAttachmentAttributeName, value: attachement, range: range)(string)
         }
@@ -316,7 +316,7 @@ public class Stylize {
 
     :returns: Function that can be called to expand an attributed string
     */
-    public class func expand(log: NSNumber, range: NSRange = EmptyRange) -> StringStyle {
+    open class func expand(_ log: NSNumber, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
             return self.apply(NSExpansionAttributeName, value: log, range: range)(string)
         }
@@ -331,7 +331,7 @@ public class Stylize {
 
     :returns: Function that can be called to alter the writing direction of an attributed string
     */
-    public class func direction(direction: WritingDirection, range: NSRange = EmptyRange) -> StringStyle {
+    open class func direction(_ direction: WritingDirection, range: NSRange = EmptyRange) -> StringStyle {
         return { string in
             return self.apply(NSWritingDirectionAttributeName, value: direction.rawValue, range: range)(string)
         }
@@ -340,17 +340,31 @@ public class Stylize {
     // MARK: Compose
 
     /**
+     Compose a style from multiple styles that can be used to style an attributed string
+
+     :param: style1 The first style to compose with
+     :param: style2 The second style to compose with
+
+     :returns: Function that can be called to style an attributed string
+     */
+    open class func compose(style1: @escaping StringStyle, style2: @escaping StringStyle) -> StringStyle {
+        return { string in
+            style2(style1(string))
+        }
+    }
+
+    /**
     Compose multiple style functions into one function that can be used to style an attributed string
 
     :param: styles An unlimted number of StringStyle functions to compose
 
     :returns: Function that can be called to style an attributed string
     */
-    public class func compose(styles: StringStyle...) -> StringStyle {
+    open class func compose(_ styles: @escaping StringStyle...) -> StringStyle {
         var composed = styles.first!
         
         for style in styles {
-            composed = composed >>> style
+            composed = compose(style1: composed, style2: style)
         }
         
         return composed
@@ -359,10 +373,11 @@ public class Stylize {
 
 // MARK: Private
 
-extension Stylize {
+fileprivate extension Stylize {
 
     /// Create a function that applies new attributes to an attributed string
-    private class func apply(name: AttributeName, value: AttributeValue, var range: NSRange) -> StringStyle {
+    class func apply(_ name: AttributeName, value: AttributeValue, range: NSRange) -> StringStyle {
+        var range = range
         return { string in
             if range.location == NSNotFound {
                 range = NSMakeRange(0, string.length)
@@ -376,23 +391,3 @@ extension Stylize {
     }
 }
 
-// MARK: Overloads
-
-/**
-*  Operator overload to compose functions with >>>
-*/
-infix operator >>> { associativity left }
-
-/**
-Compose a style from multiple styles that can be used to style an attributed string
-
-:param: style1 The first style to compose with
-:param: style2 The second style to compose with
-
-:returns: Function that can be called to style an attributed string
-*/
-func >>> (style1: StringStyle, style2: StringStyle) -> StringStyle {
-    return { string in
-        style2(style1(string))
-    }
-}

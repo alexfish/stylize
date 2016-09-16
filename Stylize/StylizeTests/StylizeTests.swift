@@ -21,52 +21,52 @@ class StylizeTests: XCTestCase {
     }
 
     func testUnderlineAttributeIsAdded() {
-        let style = Stylize.underline(NSUnderlineStyle.StyleSingle)
+        let style = Stylize.underline(NSUnderlineStyle.styleSingle)
         checkAttribute(NSUnderlineStyleAttributeName, style: style)
     }
 
     func testUnderlineAttibuteIsAddedToARange() {
-        let style = Stylize.underline(NSUnderlineStyle.StyleSingle, range: range)
+        let style = Stylize.underline(NSUnderlineStyle.styleSingle, range: range)
         checkAttributeInRange(NSUnderlineStyleAttributeName, style: style)
     }
 
     func testForegroundColorIsAdded() {
-        let style = Stylize.foreground(UIColor.redColor())
+        let style = Stylize.foreground(UIColor.red)
         checkAttribute(NSForegroundColorAttributeName, style: style)
     }
 
     func testForegroundColorIsAddedToARange() {
-        let style = Stylize.foreground(UIColor.redColor(), range: range)
+        let style = Stylize.foreground(UIColor.red, range: range)
         checkAttributeInRange(NSForegroundColorAttributeName, style: style)
     }
 
     func testBackgroundColorIsAdded() {
-        let style = Stylize.background(UIColor.redColor())
+        let style = Stylize.background(UIColor.red)
         checkAttribute(NSBackgroundColorAttributeName, style: style)
     }
 
     func testBackgroundColorIsAddedToARange() {
-        let style = Stylize.background(UIColor.redColor(), range: range)
+        let style = Stylize.background(UIColor.red, range: range)
         checkAttributeInRange(NSBackgroundColorAttributeName, style: style)
     }
 
     func testUnderlineColorIsAdded() {
-        let style = Stylize.underline(UIColor.redColor())
+        let style = Stylize.underline(UIColor.red)
         checkAttribute(NSUnderlineColorAttributeName, style: style)
     }
 
     func testUnderlineColorIsAddedToARange() {
-        let style = Stylize.underline(UIColor.redColor(), range: range)
+        let style = Stylize.underline(UIColor.red, range: range)
         checkAttributeInRange(NSUnderlineColorAttributeName, style: style)
     }
 
     func testLinkIsAdded() {
-        let style = Stylize.link(NSURL(string: "")!)
+        let style = Stylize.link(URL(string: "http://google.com")!)
         checkAttribute(NSLinkAttributeName, style: style)
     }
 
     func testLinkIsAddedToARange() {
-        let style = Stylize.link(NSURL(string: "")!, range: range)
+        let style = Stylize.link(URL(string: "http://google.com")!, range: range)
         checkAttributeInRange(NSLinkAttributeName, style: style)
     }
 
@@ -101,22 +101,22 @@ class StylizeTests: XCTestCase {
     }
 
     func testStrikethroughIsAdded() {
-        let style = Stylize.strikethrough(NSUnderlineStyle.PatternDash)
+        let style = Stylize.strikethrough(NSUnderlineStyle.patternDash)
         checkAttribute(NSStrikethroughStyleAttributeName, style: style)
     }
 
     func testStrikethroughIsAddedToARange() {
-        let style = Stylize.strikethrough(NSUnderlineStyle.PatternDash, range: range)
+        let style = Stylize.strikethrough(NSUnderlineStyle.patternDash, range: range)
         checkAttributeInRange(NSStrikethroughStyleAttributeName, style: style)
     }
 
     func testStrikethroughColorIsAdded() {
-        let style = Stylize.strikethrough(UIColor.redColor())
+        let style = Stylize.strikethrough(UIColor.red)
         checkAttribute(NSStrikethroughColorAttributeName, style: style)
     }
 
     func testStrikethroughColorIsAddedtoARange() {
-        let style = Stylize.strikethrough(UIColor.redColor(), range: range)
+        let style = Stylize.strikethrough(UIColor.red, range: range)
         checkAttributeInRange(NSStrikethroughColorAttributeName, style: style)
     }
 
@@ -141,12 +141,12 @@ class StylizeTests: XCTestCase {
     }
 
     func testStrokeColorIsAdded() {
-        let style = Stylize.stroke(UIColor.redColor())
+        let style = Stylize.stroke(UIColor.red)
         checkAttribute(NSStrokeColorAttributeName, style: style)
     }
 
     func testStrokeColorIsAddedToRange() {
-        let style = Stylize.stroke(UIColor.redColor(), range: range)
+        let style = Stylize.stroke(UIColor.red, range: range)
         checkAttributeInRange(NSStrokeColorAttributeName, style: style)
     }
 
@@ -161,12 +161,12 @@ class StylizeTests: XCTestCase {
     }
 
     func testFontIsAdded() {
-        let style = Stylize.font(UIFont.boldSystemFontOfSize(10))
+        let style = Stylize.font(UIFont.boldSystemFont(ofSize: 10))
         checkAttribute(NSFontAttributeName, style: style)
     }
 
     func testFontIsAddedToRange() {
-        let style = Stylize.font(UIFont.boldSystemFontOfSize(10), range: range)
+        let style = Stylize.font(UIFont.boldSystemFont(ofSize: 10), range: range)
         checkAttributeInRange(NSFontAttributeName, style: style)
     }
 
@@ -211,12 +211,12 @@ class StylizeTests: XCTestCase {
     }
 
     func testDirectionIsAdded() {
-        let style = Stylize.direction(WritingDirection.RightToLeftEmbedding)
+        let style = Stylize.direction(WritingDirection.rightToLeftEmbedding)
         checkAttribute(NSWritingDirectionAttributeName, style: style)
     }
 
     func testDirectionIsAddedToRange() {
-        let style = Stylize.direction(WritingDirection.RightToLeftEmbedding, range: range)
+        let style = Stylize.direction(WritingDirection.rightToLeftEmbedding, range: range)
         checkAttributeInRange(NSWritingDirectionAttributeName, style: style)
     }
 
@@ -241,7 +241,7 @@ class StylizeTests: XCTestCase {
 
 extension StylizeTests {
 
-    func checkAttribute(name: AttributeName, style: StringStyle) {
+    func checkAttribute(_ name: AttributeName, style: StringStyle) {
         let testString  = style(string!)
 
         let found = attributeFound(name, string: testString)
@@ -249,7 +249,7 @@ extension StylizeTests {
         XCTAssertTrue(found, "\(name) attribute was not added")
     }
 
-    func checkAttributeInRange(name: AttributeName, style: StringStyle) {
+    func checkAttributeInRange(_ name: AttributeName, style: StringStyle) {
         let testString  = style(string!)
 
         let found    = attributeFound(name, string: testString, range: range)
@@ -259,20 +259,20 @@ extension StylizeTests {
         XCTAssertFalse(notFound, "\(name) attribute was added at the wrong range")
     }
 
-    func attributeFound(name: AttributeName, string: NSAttributedString) -> Bool {
+    func attributeFound(_ name: AttributeName, string: NSAttributedString) -> Bool {
         var found = false
 
-        string.enumerateAttribute(name, inRange: NSMakeRange(0, string.length), options: NSAttributedStringEnumerationOptions.Reverse, usingBlock: { attributes, _, _ in
+        string.enumerateAttribute(name, in: NSMakeRange(0, string.length), options: NSAttributedString.EnumerationOptions.reverse, using: { attributes, _, _ in
             found = attributes != nil
         })
 
         return found
     }
 
-    func attributeFound(name: AttributeName, string: NSAttributedString, range: NSRange) -> Bool {
+    func attributeFound(_ name: AttributeName, string: NSAttributedString, range: NSRange) -> Bool {
         var found = false
 
-        string.enumerateAttribute(name, inRange: range, options: NSAttributedStringEnumerationOptions.Reverse, usingBlock: { attributes, _, _ in
+        string.enumerateAttribute(name, in: range, options: NSAttributedString.EnumerationOptions.reverse, using: { attributes, _, _ in
             found = attributes != nil
         })
 
