@@ -7,7 +7,7 @@
 #
 
 Pod::Spec.new do |s|
-  s.name         = "Stylize"
+  s.name         = "Stylized"
   s.version      = "1.0.0"
   s.summary      = "Modern NSAttributedString"
   s.description  = <<-DESC

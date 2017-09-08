@@ -8,7 +8,7 @@ A funcitonal wrapper of NSAttributedString for easy string styling
 
 * [Why does NSAttributedString need a wrapper?](#why-does-nsattributedstring-need-a-wrapper)
 * [Integration](#integration)
-    * [Carthage](#carthage)
+    * [Cocoapods](#cocoapods)
     * [Manual](#manual)
         * [iOS 8+](#ios-8)
 * [Usage](#usage)
@@ -43,9 +43,9 @@ That's better.
 
 ## Integration
 
-### Carthage
+### Cocoapods
 
-Add `github "alexfish/stylize"` to your `Cartfile`
+Add `pod "Stylized"` to your `Podfile`
 
 ### Manual
 
