@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "Stylized"
-  s.version      = "1.0.0"
+  s.version      = "2.0.0"
   s.summary      = "Modern NSAttributedString"
   s.description  = <<-DESC
   A funcitonal wrapper of NSAttributedString for easy string styling

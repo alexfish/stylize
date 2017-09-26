@@ -22,202 +22,202 @@ class StylizeTests: XCTestCase {
 
     func testUnderlineAttributeIsAdded() {
         let style = Stylize.underline(NSUnderlineStyle.styleSingle)
-        checkAttribute(NSUnderlineStyleAttributeName, style: style)
+        checkAttribute(NSAttributedStringKey.underlineStyle, style: style)
     }
 
     func testUnderlineAttibuteIsAddedToARange() {
         let style = Stylize.underline(NSUnderlineStyle.styleSingle, range: range)
-        checkAttributeInRange(NSUnderlineStyleAttributeName, style: style)
+        checkAttributeInRange(NSAttributedStringKey.underlineStyle, style: style)
     }
 
     func testForegroundColorIsAdded() {
         let style = Stylize.foreground(UIColor.red)
-        checkAttribute(NSForegroundColorAttributeName, style: style)
+        checkAttribute(NSAttributedStringKey.foregroundColor, style: style)
     }
 
     func testForegroundColorIsAddedToARange() {
         let style = Stylize.foreground(UIColor.red, range: range)
-        checkAttributeInRange(NSForegroundColorAttributeName, style: style)
+        checkAttributeInRange(NSAttributedStringKey.foregroundColor, style: style)
     }
 
     func testBackgroundColorIsAdded() {
         let style = Stylize.background(UIColor.red)
-        checkAttribute(NSBackgroundColorAttributeName, style: style)
+        checkAttribute(NSAttributedStringKey.backgroundColor, style: style)
     }
 
     func testBackgroundColorIsAddedToARange() {
         let style = Stylize.background(UIColor.red, range: range)
-        checkAttributeInRange(NSBackgroundColorAttributeName, style: style)
+        checkAttributeInRange(NSAttributedStringKey.backgroundColor, style: style)
     }
 
     func testUnderlineColorIsAdded() {
         let style = Stylize.underline(UIColor.red)
-        checkAttribute(NSUnderlineColorAttributeName, style: style)
+        checkAttribute(NSAttributedStringKey.underlineColor, style: style)
     }
 
     func testUnderlineColorIsAddedToARange() {
         let style = Stylize.underline(UIColor.red, range: range)
-        checkAttributeInRange(NSUnderlineColorAttributeName, style: style)
+        checkAttributeInRange(NSAttributedStringKey.underlineColor, style: style)
     }
 
     func testLinkIsAdded() {
         let style = Stylize.link(URL(string: "http://google.com")!)
-        checkAttribute(NSLinkAttributeName, style: style)
+        checkAttribute(NSAttributedStringKey.link, style: style)
     }
 
     func testLinkIsAddedToARange() {
         let style = Stylize.link(URL(string: "http://google.com")!, range: range)
-        checkAttributeInRange(NSLinkAttributeName, style: style)
+        checkAttributeInRange(NSAttributedStringKey.link, style: style)
     }
 
     func testParagraphIsAdded() {
         let style = Stylize.paragraph(NSParagraphStyle())
-        checkAttribute(NSParagraphStyleAttributeName, style: style)
+        checkAttribute(NSAttributedStringKey.paragraphStyle, style: style)
     }
 
     func testParagraphIsAddedToARange() {
         let style = Stylize.paragraph(NSParagraphStyle(), range: range)
-        checkAttributeInRange(NSParagraphStyleAttributeName, style: style)
+        checkAttributeInRange(NSAttributedStringKey.paragraphStyle, style: style)
     }
 
     func testKernIsAdded() {
         let style = Stylize.kern(1)
-        checkAttribute(NSKernAttributeName, style: style)
+        checkAttribute(NSAttributedStringKey.kern, style: style)
     }
 
     func testKernIsAddedToARange() {
         let style = Stylize.kern(1, range: range)
-        checkAttributeInRange(NSKernAttributeName, style: style)
+        checkAttributeInRange(NSAttributedStringKey.kern, style: style)
     }
 
     func testBaselineIsAdded() {
         let style = Stylize.baseline(1)
-        checkAttribute(NSBaselineOffsetAttributeName, style: style)
+        checkAttribute(NSAttributedStringKey.baselineOffset, style: style)
     }
 
     func testBaselineIsAddedToARange() {
         let style = Stylize.baseline(1, range: range)
-        checkAttributeInRange(NSBaselineOffsetAttributeName, style: style)
+        checkAttributeInRange(NSAttributedStringKey.baselineOffset, style: style)
     }
 
     func testStrikethroughIsAdded() {
         let style = Stylize.strikethrough(NSUnderlineStyle.patternDash)
-        checkAttribute(NSStrikethroughStyleAttributeName, style: style)
+        checkAttribute(NSAttributedStringKey.strikethroughStyle, style: style)
     }
 
     func testStrikethroughIsAddedToARange() {
         let style = Stylize.strikethrough(NSUnderlineStyle.patternDash, range: range)
-        checkAttributeInRange(NSStrikethroughStyleAttributeName, style: style)
+        checkAttributeInRange(NSAttributedStringKey.strikethroughStyle, style: style)
     }
 
     func testStrikethroughColorIsAdded() {
         let style = Stylize.strikethrough(UIColor.red)
-        checkAttribute(NSStrikethroughColorAttributeName, style: style)
+        checkAttribute(NSAttributedStringKey.strikethroughColor, style: style)
     }
 
     func testStrikethroughColorIsAddedtoARange() {
         let style = Stylize.strikethrough(UIColor.red, range: range)
-        checkAttributeInRange(NSStrikethroughColorAttributeName, style: style)
+        checkAttributeInRange(NSAttributedStringKey.strikethroughColor, style: style)
     }
 
     func testShadowIsAdded() {
         let style = Stylize.shadow(NSShadow())
-        checkAttribute(NSShadowAttributeName, style: style)
+        checkAttribute(NSAttributedStringKey.shadow, style: style)
     }
 
     func testShadowIsAddedToRange() {
         let style = Stylize.shadow(NSShadow(), range: range)
-        checkAttributeInRange(NSShadowAttributeName, style: style)
+        checkAttributeInRange(NSAttributedStringKey.shadow, style: style)
     }
 
     func testStrokeWidthIsAdded() {
         let style = Stylize.stroke(1)
-        checkAttribute(NSStrokeWidthAttributeName, style: style)
+        checkAttribute(NSAttributedStringKey.strokeWidth, style: style)
     }
 
     func testStrokeWidthIsAddedToRange() {
         let style = Stylize.stroke(1, range: range)
-        checkAttributeInRange(NSStrokeWidthAttributeName, style: style)
+        checkAttributeInRange(NSAttributedStringKey.strokeWidth, style: style)
     }
 
     func testStrokeColorIsAdded() {
         let style = Stylize.stroke(UIColor.red)
-        checkAttribute(NSStrokeColorAttributeName, style: style)
+        checkAttribute(NSAttributedStringKey.strokeColor, style: style)
     }
 
     func testStrokeColorIsAddedToRange() {
         let style = Stylize.stroke(UIColor.red, range: range)
-        checkAttributeInRange(NSStrokeColorAttributeName, style: style)
+        checkAttributeInRange(NSAttributedStringKey.strokeColor, style: style)
     }
 
     func testLetterpressIsAdded() {
         let style = Stylize.letterpress()
-        checkAttribute(NSTextEffectAttributeName, style: style)
+        checkAttribute(NSAttributedStringKey.textEffect, style: style)
     }
 
     func testLetterpressIsAddedToRange() {
         let style = Stylize.letterpress(range)
-        checkAttributeInRange(NSTextEffectAttributeName, style: style)
+        checkAttributeInRange(NSAttributedStringKey.textEffect, style: style)
     }
 
     func testFontIsAdded() {
         let style = Stylize.font(UIFont.boldSystemFont(ofSize: 10))
-        checkAttribute(NSFontAttributeName, style: style)
+        checkAttribute(NSAttributedStringKey.font, style: style)
     }
 
     func testFontIsAddedToRange() {
         let style = Stylize.font(UIFont.boldSystemFont(ofSize: 10), range: range)
-        checkAttributeInRange(NSFontAttributeName, style: style)
+        checkAttributeInRange(NSAttributedStringKey.font, style: style)
     }
 
     func testLigaturesAreAdded() {
         let style = Stylize.ligatures(true)
-        checkAttribute(NSLigatureAttributeName, style: style)
+        checkAttribute(NSAttributedStringKey.ligature, style: style)
     }
 
     func testLigaturesAreAddedToRange() {
         let style = Stylize.ligatures(true, range: range)
-        checkAttributeInRange(NSLigatureAttributeName, style: style)
+        checkAttributeInRange(NSAttributedStringKey.ligature, style: style)
     }
 
     func testObliquenessIsAdded() {
         let style = Stylize.obliqueness(1)
-        checkAttribute(NSObliquenessAttributeName, style: style)
+        checkAttribute(NSAttributedStringKey.obliqueness, style: style)
     }
 
     func testObliquenessIsAddedToRange() {
         let style = Stylize.obliqueness(1, range: range)
-        checkAttributeInRange(NSObliquenessAttributeName, style: style)
+        checkAttributeInRange(NSAttributedStringKey.obliqueness, style: style)
     }
 
     func testAttachementIsAdded() {
         let style = Stylize.attachment(NSTextAttachment())
-        checkAttribute(NSAttachmentAttributeName, style: style)
+        checkAttribute(NSAttributedStringKey.attachment, style: style)
     }
 
     func testAttachementIsAddedToRange() {
         let style = Stylize.attachment(NSTextAttachment(), range: range)
-        checkAttributeInRange(NSAttachmentAttributeName, style: style)
+        checkAttributeInRange(NSAttributedStringKey.attachment, style: style)
     }
 
     func testExpandIsAdded() {
         let style = Stylize.expand(1)
-        checkAttribute(NSExpansionAttributeName, style: style)
+        checkAttribute(NSAttributedStringKey.expansion, style: style)
     }
 
     func testExpandIsAddedToRange() {
         let style = Stylize.expand(1, range: range)
-        checkAttributeInRange(NSExpansionAttributeName, style: style)
+        checkAttributeInRange(NSAttributedStringKey.expansion, style: style)
     }
 
     func testDirectionIsAdded() {
         let style = Stylize.direction(WritingDirection.rightToLeftEmbedding)
-        checkAttribute(NSWritingDirectionAttributeName, style: style)
+        checkAttribute(NSAttributedStringKey.writingDirection, style: style)
     }
 
     func testDirectionIsAddedToRange() {
         let style = Stylize.direction(WritingDirection.rightToLeftEmbedding, range: range)
-        checkAttributeInRange(NSWritingDirectionAttributeName, style: style)
+        checkAttributeInRange(NSAttributedStringKey.writingDirection, style: style)
     }
 
     func testStylesAreComposed() {
@@ -225,8 +225,8 @@ class StylizeTests: XCTestCase {
         let kern = Stylize.kern(1)
         let style = Stylize.compose(baseline, kern)
 
-        checkAttribute(NSBaselineOffsetAttributeName, style: style)
-        checkAttribute(NSKernAttributeName, style: style)
+        checkAttribute(NSAttributedStringKey.baselineOffset, style: style)
+        checkAttribute(NSAttributedStringKey.kern, style: style)
     }
 
     func testStylesAreComposedInRange() {
@@ -234,8 +234,8 @@ class StylizeTests: XCTestCase {
         let kern = Stylize.kern(1, range: range)
         let style = Stylize.compose(baseline, kern)
 
-        checkAttributeInRange(NSBaselineOffsetAttributeName, style: style)
-        checkAttributeInRange(NSKernAttributeName, style: style)
+        checkAttributeInRange(NSAttributedStringKey.baselineOffset, style: style)
+        checkAttributeInRange(NSAttributedStringKey.kern, style: style)
     }
 }
 
