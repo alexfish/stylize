@@ -9,7 +9,7 @@
 import UIKit
 
 /// Helpers
-public typealias AttributeName     = NSAttributedStringKey
+public typealias AttributeName     = NSAttributedString.Key
 public typealias AttributeValue    = AnyObject
 public typealias StringStyle       = (NSAttributedString) -> NSAttributedString
 
@@ -46,7 +46,7 @@ open class Stylize {
     */
     open class func underline(_ style: NSUnderlineStyle, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
         return { string in
-            return self.apply(NSAttributedStringKey.underlineStyle, value: style.rawValue as AttributeValue, range: range)(string)
+            return self.apply(NSAttributedString.Key.underlineStyle, value: style.rawValue as AttributeValue, range: range)(string)
         }
     }
 
@@ -61,7 +61,7 @@ open class Stylize {
     */
     open class func strikethrough(_ style: NSUnderlineStyle, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
         return { string in
-            return self.apply(NSAttributedStringKey.strikethroughStyle, value: style.rawValue as AttributeValue, range: range)(string)
+            return self.apply(NSAttributedString.Key.strikethroughStyle, value: style.rawValue as AttributeValue, range: range)(string)
         }
     }
 
@@ -76,7 +76,7 @@ open class Stylize {
     */
     open class func foreground(_ color: UIColor, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
         return { string in
-            return self.apply(NSAttributedStringKey.foregroundColor, value: color, range: range)(string)
+            return self.apply(NSAttributedString.Key.foregroundColor, value: color, range: range)(string)
         }
     }
 
@@ -91,7 +91,7 @@ open class Stylize {
     */
     open class func background(_ color: UIColor, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
         return { string in
-            return self.apply(NSAttributedStringKey.backgroundColor, value: color, range: range)(string)
+            return self.apply(NSAttributedString.Key.backgroundColor, value: color, range: range)(string)
         }
     }
 
@@ -106,7 +106,7 @@ open class Stylize {
     */
     open class func underline(_ color: UIColor, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
         return { string in
-            return self.apply(NSAttributedStringKey.underlineColor, value: color, range: range)(string)
+            return self.apply(NSAttributedString.Key.underlineColor, value: color, range: range)(string)
         }
     }
 
@@ -121,7 +121,7 @@ open class Stylize {
     */
     open class func strikethrough(_ color: UIColor, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
         return { string in
-            return self.apply(NSAttributedStringKey.strikethroughColor, value: color, range: range)(string)
+            return self.apply(NSAttributedString.Key.strikethroughColor, value: color, range: range)(string)
         }
     }
 
@@ -136,7 +136,7 @@ open class Stylize {
     */
     open class func link(_ url: URL, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
         return { string in
-            return self.apply(NSAttributedStringKey.link, value: url as AttributeValue, range: range)(string)
+            return self.apply(NSAttributedString.Key.link, value: url as AttributeValue, range: range)(string)
         }
     }
 
@@ -151,7 +151,7 @@ open class Stylize {
     */
     open class func paragraph(_ style: NSParagraphStyle, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
         return { string in
-            return self.apply(NSAttributedStringKey.paragraphStyle, value: style, range: range)(string)
+            return self.apply(NSAttributedString.Key.paragraphStyle, value: style, range: range)(string)
         }
     }
 
@@ -166,7 +166,7 @@ open class Stylize {
     */
     open class func kern(_ points: NSNumber, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
         return { string in
-            return self.apply(NSAttributedStringKey.kern, value: points, range: range)(string)
+            return self.apply(NSAttributedString.Key.kern, value: points, range: range)(string)
         }
     }
 
@@ -181,7 +181,7 @@ open class Stylize {
     */
     open class func baseline(_ offset: NSNumber, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
         return { string in
-            return self.apply(NSAttributedStringKey.baselineOffset, value: offset, range: range)(string)
+            return self.apply(NSAttributedString.Key.baselineOffset, value: offset, range: range)(string)
         }
     }
 
@@ -196,7 +196,7 @@ open class Stylize {
     */
     open class func shadow(_ shadow: NSShadow, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
         return { string in
-            return self.apply(NSAttributedStringKey.shadow, value: shadow, range: range)(string)
+            return self.apply(NSAttributedString.Key.shadow, value: shadow, range: range)(string)
         }
     }
 
@@ -211,7 +211,7 @@ open class Stylize {
     */
     open class func stroke(_ color: UIColor, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
         return { string in
-            return self.apply(NSAttributedStringKey.strokeColor, value: color, range: range)(string)
+            return self.apply(NSAttributedString.Key.strokeColor, value: color, range: range)(string)
         }
     }
 
@@ -226,7 +226,7 @@ open class Stylize {
     */
     open class func stroke(_ width: NSNumber, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
         return { string in
-            return self.apply(NSAttributedStringKey.strokeWidth, value: width, range: range)(string)
+            return self.apply(NSAttributedString.Key.strokeWidth, value: width, range: range)(string)
         }
     }
 
@@ -240,7 +240,7 @@ open class Stylize {
     */
     open class func letterpress(_ range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
         return { string in
-            return self.apply(NSAttributedStringKey.textEffect, value: NSAttributedString.TextEffectStyle.letterpressStyle as AttributeValue, range: range)(string)
+            return self.apply(NSAttributedString.Key.textEffect, value: NSAttributedString.TextEffectStyle.letterpressStyle as AttributeValue, range: range)(string)
         }
     }
 
@@ -255,7 +255,7 @@ open class Stylize {
     */
     open class func font(_ font: UIFont, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
         return { string in
-            return self.apply(NSAttributedStringKey.font, value: font, range: range)(string)
+            return self.apply(NSAttributedString.Key.font, value: font, range: range)(string)
         }
     }
 
@@ -270,7 +270,7 @@ open class Stylize {
     */
     open class func ligatures(_ enabled: Bool, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
         return { string in
-            return self.apply(NSAttributedStringKey.ligature, value: NSNumber(value: enabled as Bool), range: range)(string)
+            return self.apply(NSAttributedString.Key.ligature, value: NSNumber(value: enabled as Bool), range: range)(string)
         }
     }
 
@@ -285,7 +285,7 @@ open class Stylize {
     */
     open class func obliqueness(_ skew: NSNumber, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
         return { string in
-            return self.apply(NSAttributedStringKey.obliqueness, value: skew, range: range)(string)
+            return self.apply(NSAttributedString.Key.obliqueness, value: skew, range: range)(string)
         }
     }
 
@@ -300,7 +300,7 @@ open class Stylize {
     */
     open class func attachment(_ attachement: NSTextAttachment, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
         return { string in
-            return self.apply(NSAttributedStringKey.attachment, value: attachement, range: range)(string)
+            return self.apply(NSAttributedString.Key.attachment, value: attachement, range: range)(string)
         }
     }
 
@@ -315,7 +315,7 @@ open class Stylize {
     */
     open class func expand(_ log: NSNumber, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
         return { string in
-            return self.apply(NSAttributedStringKey.expansion, value: log, range: range)(string)
+            return self.apply(NSAttributedString.Key.expansion, value: log, range: range)(string)
         }
     }
 
@@ -330,7 +330,7 @@ open class Stylize {
     */
     open class func direction(_ direction: WritingDirection, range: NSRange = NSMakeRange(NSNotFound, 0)) -> StringStyle {
         return { string in
-            return self.apply(NSAttributedStringKey.writingDirection, value: direction.rawValue, range: range)(string)
+            return self.apply(NSAttributedString.Key.writingDirection, value: direction.rawValue, range: range)(string)
         }
     }
 
